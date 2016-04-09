@@ -11,5 +11,9 @@ router.get('/containers', async ctx => {
   ctx.body = containers;
 });
 
+router.get('/containers/:id', async (ctx, containerId) => {
+  ctx.body = await docker.getContainer(containerId);
+});
+
 
 export default router;
