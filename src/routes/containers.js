@@ -19,6 +19,7 @@ router.get('/containers', async ctx => {
         imageId: container.ImageId,
         status: container.Status,
         created: container.Created,
+        command: container.Command,
         ports: container.Port,
       };
     }),
