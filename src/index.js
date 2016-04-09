@@ -17,3 +17,7 @@ docker.listContainers({all: true}, (err, containers) => {
     }
   }
 });
+
+docker.getEvents((err, stream) => {
+  stream.on('data', data => console.log(data.toString('utf8')));
+});
