@@ -1,11 +1,11 @@
 import Koa from 'koa';
 
+import routes from './routes';
+
 
 const app = new Koa();
 
-app.use(ctx => {
-  ctx.body = 'hello webdock';
-});
+app.use(routes);
 
 
 app.listen(3000);
