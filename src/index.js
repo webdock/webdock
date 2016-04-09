@@ -1,23 +1,11 @@
-import Docker from 'dockerode';
-
-const docker = new Docker();
+import Koa from 'koa';
 
 
-docker.listContainers({all: true}, (err, containers) => {
-  if (containers.length > 0) {
-    console.log(containers);
+const app = new Koa();
 
-    if (containers.length > 0) {
-      const containerId = containers[0].Id;
-      const container = docker.getContainer(containerId);
-
-      container.inspect((err, data) => {
-        console.log(err, data);
-      });
-    }
-  }
+app.use(ctx => {
+  ctx.body = 'hello webdock';
 });
 
-docker.getEvents((err, stream) => {
-  stream.on('data', data => console.log(data.toString('utf8')));
-});
+
+app.listen(3000);
