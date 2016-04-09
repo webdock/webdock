@@ -7,8 +7,22 @@ const router = new Router();
 
 
 router.get('/containers', async ctx => {
-  const paramAll = ctx.query.all !== undefined;
-  ctx.body = await docker.listContainers({all: paramAll});
+  const paramAll = true; // ctx.query.all !== undefined;
+  const containers = await docker.listContainers({all: paramAll});
+
+  ctx.body = {
+    containers: containers.map(container => {
+      return {
+        id: container.Id,
+        names: container.Names,
+        image: container.Image,
+        imageId: container.ImageId,
+        status: container.Status,
+        created: container.Created,
+        ports: container.Port,
+      };
+    }),
+  };
 });
 
 router.get('/containers/:id', async (ctx, containerId) => {
