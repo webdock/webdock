@@ -27,9 +27,14 @@ router.get('/containers', async ctx => {
 });
 
 router.get('/containers/:id', async (ctx, containerId) => {
-  const container = await docker.getContainer(containerId);
+  const containerRef = await docker.getContainer(containerId);
   try {
-    ctx.body = await container.inspect();
+    const container = await containerRef.inspect();
+    ctx.body = {
+      container: {
+        id: container.Id,
+      }
+    };
   } catch (err) {
     ctx.status = err.statusCode;
     ctx.body = err;
