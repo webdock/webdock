@@ -1,19 +1,40 @@
 import route from 'koa-route';
 
 
-const routes = new Map();
+class Router {
+  constructor() {
+    this.routeMap = new Map();
+  }
 
-routes.set('/', ctx => {
+  get(path, fn) {
+    this.routeMap.set(path, fn);
+  }
+
+  routes() {
+    const self = this;
+    const dispatch = async (ctx, next) => {
+      const { app } = ctx;
+
+      for (const [path, fn] of self.routeMap) {
+        app.use(route.get(path, fn));
+      }
+
+      await next();
+    }
+    return dispatch;
+  }
+}
+
+
+const router = new Router();
+
+router.get('/', ctx => {
   ctx.body = 'hello webdock';
 });
 
 
 export default async function (ctx, next) {
   const { app } = ctx;
-
-  for (const [path, fn] of routes) {
-    app.use(route.get(path, fn));
-  }
-
+  app.use(router.routes());
   await next();
 };
