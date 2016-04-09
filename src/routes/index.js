@@ -1,5 +1,6 @@
 import Router from 'koa-route-class';
 
+import containerRouter from './containers';
 
 
 const router = new Router();
@@ -7,6 +8,8 @@ const router = new Router();
 router.get('/', ctx => {
   ctx.body = 'hello webdock';
 });
+
+router.use(containerRouter.routes());
 
 
 export default async function (ctx, next) {
