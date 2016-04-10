@@ -34,7 +34,12 @@ router.get('/images/:id', async (ctx, imageId) => {
 
   try {
     const dockerImage = await imageRef.inspect();
-    ctx.body = dockerImage;
+
+    ctx.body = {
+      image: {
+        id: formatImageId(dockerImage.Id),
+      }
+    };
   } catch (err) {
     ctx.status = err.statusCode;
     ctx.body = err;
