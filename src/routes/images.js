@@ -4,10 +4,12 @@ import docker from '../docker';
 import { formatImageId } from '../utils/images';
 
 
-const router = new Router();
+const router = new Router({
+  prefix: 'images',
+});
 
 
-router.get('/images', async ctx => {
+router.get('/', async ctx => {
   const dockerImages = await docker.listImages();
   ctx.body = {
     images: dockerImages.map(image => {
@@ -25,7 +27,7 @@ router.get('/images', async ctx => {
   }
 });
 
-router.get('/images/:id', async (ctx, imageId) => {
+router.get('/:id', async (ctx, imageId) => {
   const imageRef = await docker.getImage(imageId);
 
   try {
