@@ -14,16 +14,21 @@ router.get('/', async ctx => {
   const containers = await docker.listContainers({all: paramAll});
 
   ctx.body = {
-    containers: containers.map(container => {
+    data: containers.map(container => {
       return {
+        type: 'containers',
         id: container.Id,
-        names: container.Names,
-        image: container.Image.match(/sha256\:/) ? '<none>' : container.Image,
-        imageId: formatImageId(container.ImageID),
-        status: container.Status,
-        created: container.Created,
-        command: container.Command,
-        ports: container.Port,
+        attributes: {
+          names: container.Names,
+          image: container.Image.match(/sha256\:/) ? '<none>' : container.Image,
+          imageId: formatImageId(container.ImageID),
+          status: container.Status,
+          created: container.Created,
+          command: container.Command,
+          ports: container.Port,
+        },
+        relationships: {
+        }
       };
     }),
   };

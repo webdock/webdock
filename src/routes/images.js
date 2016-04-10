@@ -12,16 +12,21 @@ const router = new Router({
 router.get('/', async ctx => {
   const dockerImages = await docker.listImages();
   ctx.body = {
-    images: dockerImages.map(image => {
+    data: dockerImages.map(dockerImage => {
       return {
-        id: formatImageId(image.Id),
-        parentId: formatImageId(image.ParentId),
-        repoTags: image.RepoTags,
-        repoDigests: image.RepoDigests,
-        created: image.Created,
-        size: image.Size,
-        virtualSize: image.VirtualSize,
-        labels: image.Labels,
+        type: 'images',
+        id: formatImageId(dockerImage.Id),
+        attributes: {
+          'parent-id': formatImageId(dockerImage.ParentId),
+          'repo-tags': dockerImage.RepoTags,
+          'repo-digests': dockerImage.RepoDigests,
+          'created': dockerImage.Created,
+          'size': dockerImage.Size,
+          'virtual-size': dockerImage.VirtualSize,
+          'labels': dockerImage.Labels,
+        },
+        relationships: {
+        }
       };
     }),
   }
