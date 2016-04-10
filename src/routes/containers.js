@@ -4,10 +4,12 @@ import docker from '../docker';
 import { formatImageId } from '../utils/images';
 
 
-const router = new Router();
+const router = new Router({
+  prefix: '/containers',
+});
 
 
-router.get('/containers', async ctx => {
+router.get('/', async ctx => {
   const paramAll = true; // ctx.query.all !== undefined;
   const containers = await docker.listContainers({all: paramAll});
 
@@ -27,7 +29,7 @@ router.get('/containers', async ctx => {
   };
 });
 
-router.get('/containers/:id', async (ctx, containerId) => {
+router.get('/:id', async (ctx, containerId) => {
   const containerRef = await docker.getContainer(containerId);
   try {
     const container = await containerRef.inspect();
