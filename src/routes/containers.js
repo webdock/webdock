@@ -16,7 +16,7 @@ router.get('/containers', async ctx => {
       return {
         id: container.Id,
         names: container.Names,
-        image: container.Image,
+        image: formatImageId(container.Image),
         imageId: formatImageId(container.ImageID),
         status: container.Status,
         created: container.Created,
