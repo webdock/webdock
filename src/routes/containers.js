@@ -1,6 +1,7 @@
 import Router from 'koa-route-class';
 
 import docker from '../docker';
+import { formatImageId } from '../utils/images';
 
 
 const router = new Router();
@@ -16,7 +17,7 @@ router.get('/containers', async ctx => {
         id: container.Id,
         names: container.Names,
         image: container.Image,
-        imageId: container.ImageID,
+        imageId: formatImageId(container.ImageID),
         status: container.Status,
         created: container.Created,
         command: container.Command,
