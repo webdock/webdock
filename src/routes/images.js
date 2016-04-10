@@ -24,5 +24,17 @@ router.get('/images', async ctx => {
   }
 });
 
+router.get('/images/:id', async (ctx, imageId) => {
+  const imageRef = await docker.getImage(imageId);
+
+  try {
+    const dockerImage = await imageRef.inspect();
+    ctx.body = dockerImage;
+  } catch (err) {
+    ctx.status = err.statusCode;
+    ctx.body = err;
+  }
+});
+
 
 export default router;
