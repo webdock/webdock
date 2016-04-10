@@ -1,14 +1,10 @@
 import Router from 'koa-route-class';
 
 import docker from '../docker';
+import { formatImageId } from '../utils/images';
 
 
 const router = new Router();
-
-
-function formatImageId(imageId) {
-  return imageId.replace(/sha256\:/, '');
-}
 
 
 router.get('/images', async ctx => {
