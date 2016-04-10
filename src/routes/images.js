@@ -6,13 +6,18 @@ import docker from '../docker';
 const router = new Router();
 
 
+function formatImageId(imageId) {
+  return imageId.replace(/sha256\:/, '');
+}
+
+
 router.get('/images', async ctx => {
   const dockerImages = await docker.listImages();
   ctx.body = {
     images: dockerImages.map(image => {
       return {
-        id: image.Id.replace(/sha256\:/, ''),
-        parentId: image.ParentId.replace(/sha256\:/, ''),
+        id: formatImageId(image.Id),
+        parentId: formatImageId(image.ParentId),
         repoTags: image.RepoTags,
         repoDigests: image.RepoDigests,
         created: image.Created,
