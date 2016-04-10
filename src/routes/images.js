@@ -11,8 +11,8 @@ router.get('/images', async ctx => {
   ctx.body = {
     images: dockerImages.map(image => {
       return {
-        id: image.Id,
-        parentId: image.ParentId,
+        id: image.Id.replace(/sha256\:/, ''),
+        parentId: image.ParentId.replace(/sha256\:/, ''),
         repoTags: image.RepoTags,
         repoDigests: image.RepoDigests,
         created: image.Created,
