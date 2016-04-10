@@ -5,7 +5,7 @@ import { formatImageId } from '../utils/images';
 
 
 const router = new Router({
-  prefix: '/containers',
+  prefix: 'containers',
 });
 
 
