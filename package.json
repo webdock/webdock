@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.7.4",
+    "babel-register": "^6.7.2",
     "dockerode": "^2.2.10",
     "dockerode-promise": "^0.1.0",
     "koa": "^2.0.0",

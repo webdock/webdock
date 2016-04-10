@@ -1,0 +1,7 @@
+#!/usr/local/bin/node
+
+
+require('babel-polyfill');
+require('babel-register');
+
+require('../src/index');
