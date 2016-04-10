@@ -7,14 +7,19 @@ import eventsRouter from './events';
 
 const router = new Router();
 
+const apiRouter = new Router({
+  prefix: '/api',
+});
+
+apiRouter.use(containerRouter.routes());
+apiRouter.use(imageRouter.routes());
+apiRouter.use(eventsRouter.routes());
+
+router.use(apiRouter.routes());
+
 router.get('/', ctx => {
   ctx.body = 'hello webdock';
 });
-
-router.use(containerRouter.routes());
-router.use(imageRouter.routes());
-router.use(eventsRouter.routes());
-
 
 export default async function (ctx, next) {
   const { app } = ctx;
