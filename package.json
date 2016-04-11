@@ -16,6 +16,7 @@
     "babel-register": "^6.7.2",
     "dockerode": "^2.2.10",
     "dockerode-promise": "^0.1.0",
+    "jsonapi": "git://github.com/noxan/jsonapi.git",
     "koa": "^2.0.0",
     "koa-cors": "0.0.16",
     "koa-route-class": "^0.3.0"
