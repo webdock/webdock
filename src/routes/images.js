@@ -1,6 +1,7 @@
 import Router from 'koa-route-class';
 
 import docker from '../docker';
+import imageSchema from '../schemas/image';
 import { formatImageId } from '../utils/images';
 
 
@@ -38,11 +39,7 @@ router.get('/:id', async (ctx, imageId) => {
   try {
     const dockerImage = await imageRef.inspect();
 
-    ctx.body = {
-      image: {
-        id: formatImageId(dockerImage.Id),
-      }
-    };
+    ctx.body = imageSchema.serialize(dockerImage);
   } catch (err) {
     ctx.status = err.statusCode;
     ctx.body = err;
