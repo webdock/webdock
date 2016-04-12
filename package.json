@@ -19,7 +19,10 @@
     "jsonapi-helper": "^0.2.0",
     "koa": "^2.0.0",
     "koa-cors": "0.0.16",
-    "koa-route-class": "^0.3.0"
+    "koa-route-class": "^0.3.0",
+    "primus": "^5.0.1",
+    "primus-multiplex": "^3.2.0",
+    "ws": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
