@@ -1,4 +1,5 @@
 import http from 'http';
+import Primus from 'primus';
 import Koa from 'koa';
 import cors from 'koa-cors';
 
@@ -14,3 +15,6 @@ app.use(routes);
 
 const server = http.createServer(app.callback());
 server.listen(3000);
+
+
+const primus = new Primus(server);
