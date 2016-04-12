@@ -7,13 +7,12 @@ const containerSchema = new Schema({
   id: 'Id',
   type: 'containers',
   attributes: {
-    names: 'Names',
-    image: (obj) => obj.Image.match(/sha256\:/) ? '<none>' : obj.Image,
-    imageId: (obj) => formatImageId(obj.ImageID || ''),
-    status: 'Status',
+    name: 'Name',
+    image: (obj) => formatImageId(obj.Image),
+    status: (obj) => obj.State.Status,
     created: 'Created',
-    command: 'Command',
-    ports: 'Port',
+    command: 'Path',
+    ports: (obj) => obj.NetworkSettings.Ports,
   },
 });
 

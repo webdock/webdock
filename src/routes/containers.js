@@ -13,7 +13,14 @@ router.get('/', async ctx => {
   const paramAll = true; // ctx.query.all !== undefined;
   const containers = await docker.listContainers({all: paramAll});
 
-  ctx.body = containerSchema.serialize(containers);
+  const containerDetails = [];
+  for (let index in containers) {
+    const containerRef = await docker.getContainer(containers[index].Id);
+    const containerDetail = await containerRef.inspect();
+    containerDetails.push(containerDetail);
+  }
+
+  ctx.body = containerSchema.serialize(containerDetails);
 });
 
 router.get('/:id', async (ctx, containerId) => {
