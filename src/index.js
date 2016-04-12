@@ -1,3 +1,4 @@
+import http from 'http';
 import Koa from 'koa';
 import cors from 'koa-cors';
 
@@ -11,4 +12,5 @@ app.use(cors());
 app.use(routes);
 
 
-app.listen(3000);
+const server = http.createServer(app.callback());
+server.listen(3000);
