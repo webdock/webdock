@@ -1,5 +1,6 @@
 import http from 'http';
 import Primus from 'primus';
+import multiplex from 'primus-multiplex';
 import Koa from 'koa';
 import cors from 'koa-cors';
 
@@ -18,3 +19,4 @@ server.listen(3000);
 
 
 const primus = new Primus(server);
+primus.use('multiplex', multiplex);
