@@ -22,7 +22,7 @@ router.get('/:id', async (ctx, containerId) => {
     const container = await containerRef.inspect();
     ctx.body = containerSchema.serialize(container);
   } catch (err) {
-    ctx.status = err.statusCode;
+    ctx.status = err.statusCode || 500;
     ctx.body = err;
   }
 });
