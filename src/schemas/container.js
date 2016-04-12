@@ -9,7 +9,7 @@ const containerSchema = new Schema({
   attributes: {
     names: 'Names',
     image: (obj) => obj.Image.match(/sha256\:/) ? '<none>' : obj.Image,
-    imageId: (obj) => formatImageId(obj.ImageID),
+    imageId: (obj) => formatImageId(obj.ImageID || ''),
     status: 'Status',
     created: 'Created',
     command: 'Command',
