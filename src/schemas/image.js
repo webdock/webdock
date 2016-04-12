@@ -1,4 +1,4 @@
-import Schema from 'jsonapi';
+import Schema from 'jsonapi-helper';
 
 import { formatImageId } from '../utils/images';
 
