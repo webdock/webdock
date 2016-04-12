@@ -20,3 +20,4 @@ server.listen(3000);
 
 const primus = new Primus(server);
 primus.use('multiplex', multiplex);
+primus.library();
