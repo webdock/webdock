@@ -3,6 +3,21 @@ import Schema from 'jsonapi-helper';
 import { formatImageId } from '../utils/images';
 
 
+const portsHelper = (obj) => {
+  const ports = obj.NetworkSettings.Ports;
+  if (ports === undefined || ports === null) {
+    return ports;
+  }
+
+  return Object.keys(ports).map(sourcePort => {
+    return {
+      source: sourcePort,
+      destination: ports[sourcePort],
+    };
+  });
+}
+
+
 const containerSchema = new Schema({
   id: 'Id',
   type: 'containers',
@@ -12,7 +27,7 @@ const containerSchema = new Schema({
     status: (obj) => obj.State.Status,
     created: 'Created',
     command: 'Path',
-    ports: (obj) => obj.NetworkSettings.Ports,
+    ports: portsHelper,
   },
 });
 
