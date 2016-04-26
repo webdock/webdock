@@ -1,5 +1,6 @@
 import Schema from 'jsonapi-helper';
 
+import imageSchema from './image';
 import { formatImageId } from '../utils/images';
 
 
@@ -23,11 +24,17 @@ const containerSchema = new Schema({
   type: 'containers',
   attributes: {
     name: 'Name',
-    image: (obj) => formatImageId(obj.Image),
     status: (obj) => obj.State.Status,
     created: 'Created',
     command: 'Path',
     ports: portsHelper,
+  },
+  relationships: {
+    image: {
+      id: (obj) => formatImageId(obj.Image),
+      schema: imageSchema,
+      included: false,
+    },
   },
 });
 
