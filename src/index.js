@@ -1,23 +1,18 @@
-import http from 'http';
 import Primus from 'primus';
 import multiplex from 'primus-multiplex';
-import Koa from 'koa';
 import cors from 'koa-cors';
+
+import app, { server } from './app';
 
 import docker from './docker';
 import routes from './routes';
 import containerSchema from './schemas/container';
 
 
-const app = new Koa();
 
 app.use(cors());
 
 app.use(routes);
-
-
-const server = http.createServer(app.callback());
-server.listen(3000);
 
 
 const primus = new Primus(server);
