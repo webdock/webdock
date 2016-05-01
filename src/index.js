@@ -1,8 +1,7 @@
-import Primus from 'primus';
-import multiplex from 'primus-multiplex';
 import cors from 'koa-cors';
 
 import app, { server } from './app';
+import primus from './primus';
 
 import docker from './docker';
 import routes from './routes';
@@ -13,11 +12,6 @@ import containerSchema from './schemas/container';
 app.use(cors());
 
 app.use(routes);
-
-
-const primus = new Primus(server);
-primus.use('multiplex', multiplex);
-primus.library();
 
 
 const events = primus.channel('events');
