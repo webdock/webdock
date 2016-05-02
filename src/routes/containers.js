@@ -1,7 +1,7 @@
 import Router from 'koa-route-class';
 
+import { listContainers } from '../sources/container';
 import containerSchema from '../schemas/container';
-import docker from '../docker';
 
 
 const router = new Router({
@@ -9,17 +9,9 @@ const router = new Router({
 });
 
 
+
 router.get('/', async ctx => {
-  const paramAll = true; // ctx.query.all !== undefined;
-  const containers = await docker.listContainers({all: paramAll});
-
-  const containerDetails = [];
-  for (let index in containers) {
-    const containerRef = await docker.getContainer(containers[index].Id);
-    const containerDetail = await containerRef.inspect();
-    containerDetails.push(containerDetail);
-  }
-
+  const containerDetails = await listContainers();
   ctx.body = containerSchema.serialize(containerDetails);
 });
 
