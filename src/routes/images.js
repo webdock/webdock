@@ -2,7 +2,6 @@ import Router from 'koa-route-class';
 
 import docker from '../docker';
 import imageSchema from '../schemas/image';
-import { formatImageId } from '../utils/images';
 
 
 const router = new Router({
