@@ -6,14 +6,13 @@ export const listContainers = async (paramAll = true) => {
     all: paramAll,
   });
 
-  const containerDetails = [];
-  for (const index in containers) {
-    const containerRef = await docker.getContainer(containers[index].Id);
-    const containerDetail = await containerRef.inspect();
-    containerDetails.push(containerDetail);
-  }
+  const result = [];
+  await Promise.all(containers.map(async container => {
+    const containerRef = await docker.getContainer(container.Id);
+    return result.push(await containerRef.inspect());
+  }));
 
-  return containerDetails;
+  return result;
 };
 
 
