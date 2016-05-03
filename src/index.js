@@ -1,4 +1,4 @@
-import cors from 'koa-cors';
+import cors from 'kcors';
 
 import app from './app';
 
