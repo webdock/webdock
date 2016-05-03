@@ -1,12 +1,11 @@
 import cors from 'koa-cors';
 
-import app, { server } from './app';
+import app from './app';
 import primus from './primus';
 
 import docker from './docker';
 import routes from './routes';
 import containerSchema from './schemas/container';
-
 
 
 app.use(cors());
@@ -20,7 +19,7 @@ const events = primus.channel('events');
 (async () => {
   const dockerEvents = await docker.getEvents();
 
-  dockerEvents.on('data', (async data => {
+  dockerEvents.on('data', async data => {
     const dockerEvent = JSON.parse(data.toString('utf8'));
 
     if (dockerEvent.Type === 'container') {
@@ -30,5 +29,5 @@ const events = primus.channel('events');
 
       events.write(containerSchema.serialize(dockerContainer));
     }
-  }));
+  });
 })();
