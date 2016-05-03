@@ -6,6 +6,7 @@ const app = new Koa();
 
 export const server = http.createServer(app.callback());
 server.listen(3000);
+console.log('Server listening to http://127.0.0.1:3000/.');
 
 
 export default app;
