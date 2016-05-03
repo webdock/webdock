@@ -10,13 +10,11 @@ const portsHelper = (obj) => {
     return ports;
   }
 
-  return Object.keys(ports).map(sourcePort => {
-    return {
-      source: sourcePort,
-      destination: ports[sourcePort],
-    };
-  });
-}
+  return Object.keys(ports).map(sourcePort => ({
+    source: sourcePort,
+    destination: ports[sourcePort],
+  }));
+};
 
 
 const containerSchema = new Schema({
