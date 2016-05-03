@@ -13,3 +13,8 @@ export const listContainers = async (paramAll = true) => {
 
   return containerDetails;
 };
+
+
+export const containerDetail = async (id) => {
+  return await docker.getContainer(id);
+};

@@ -1,7 +1,7 @@
 import Router from 'koa-route-class';
 
 import primus from '../primus';
-import { listContainers } from '../sources/container';
+import { listContainers, containerDetail } from '../sources/container';
 import containerSchema from '../schemas/container';
 
 
@@ -25,7 +25,7 @@ router.get('/', async ctx => {
 });
 
 router.get('/:id', async (ctx, containerId) => {
-  const containerRef = await docker.getContainer(containerId);
+  const containerRef = await containerDetail(containerId);
   try {
     const container = await containerRef.inspect();
     ctx.body = containerSchema.serialize(container);
