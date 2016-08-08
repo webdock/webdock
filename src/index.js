@@ -10,7 +10,9 @@ import { SECRET_KEY } from './constants';
 
 const route = pathMatch();
 
-app.use(cors());
+app.use(cors({
+  allowHeaders: 'Authorization',
+}));
 app.use(bodyParser());
 
 app.use(route('/api/authenticate').post(authenticateRoute));
