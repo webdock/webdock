@@ -14,9 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-polyfill": "^6.7.4",
-    "babel-register": "^6.7.2",
-    "dockerode": "^2.2.10",
+    "babel-polyfill": "^6.13.0",
+    "babel-register": "^6.11.6",
+    "dockerode": "^2.3.0",
     "dockerode-promise": "^0.1.0",
     "jsonapi-helper": "^0.3.0-dev.20160428",
     "kcors": "^2.1.0",
@@ -27,15 +27,15 @@
     "koa-route-class": "^0.3.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-core": "^6.7.6",
-    "babel-eslint": "^6.0.4",
-    "babel-preset-es2015": "^6.6.0",
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.13.2",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.13.2",
     "babel-preset-stage-0": "^6.5.0",
-    "eslint": "^2.9.0",
-    "eslint-config-airbnb-base": "^2.0.0",
-    "eslint-plugin-import": "^1.6.1",
-    "nodemon": "^1.9.1"
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb-base": "^5.0.1",
+    "eslint-plugin-import": "^1.12.0",
+    "nodemon": "^1.10.0"
   },
   "repository": {
     "type": "git",
