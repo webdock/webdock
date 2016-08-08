@@ -5,10 +5,9 @@ import jwt from 'koa-jwt';
 import bodyParser from 'koa-bodyparser';
 
 import routes from './routes';
-import { authenticateRoute } from './routes/authenticate';
 import { SECRET_KEY } from './constants';
+import userRoutes from './users';
 import containerRoutes from './containers';
-import route from './utils/route';
 
 const app = new Koa();
 
@@ -17,12 +16,13 @@ app.use(cors({
 }));
 app.use(bodyParser());
 
+app.use(jwt({ secret: SECRET_KEY }).unless({
+  method: 'OPTIONS',
+  path: '/api/authenticate',
+}));
+
+userRoutes(app);
 containerRoutes(app);
-
-app.use(route('/api/authenticate').post(authenticateRoute));
-
-app.use(jwt({ secret: SECRET_KEY }).unless({ method: 'OPTIONS' }));
-
 app.use(routes);
 
 const server = http.createServer(app.callback());

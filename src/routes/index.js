@@ -1,7 +1,6 @@
 import Router from 'koa-route-class';
 
 import imageRouter from './images';
-import usersRouter from './users';
 
 
 const router = new Router();
@@ -11,7 +10,6 @@ const apiRouter = new Router({
 });
 
 apiRouter.use(imageRouter.routes());
-apiRouter.use(usersRouter.routes());
 
 router.use(apiRouter.routes());
 
