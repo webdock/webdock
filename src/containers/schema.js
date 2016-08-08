@@ -1,6 +1,6 @@
 import Schema from 'jsonapi-helper';
 
-import imageSchema from './image';
+import imageSchema from '../schemas/image';
 import { formatImageId } from '../utils/images';
 
 

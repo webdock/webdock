@@ -1,20 +1,12 @@
-import Router from 'koa-route-class';
+import { listContainers, containerDetail } from './source';
+import containerSchema from './schema';
 
-import { listContainers, containerDetail } from '../sources/container';
-import containerSchema from '../schemas/container';
-
-
-const router = new Router({
-  prefix: 'containers',
-});
-
-
-router.get('/', async ctx => {
+export const index = async ctx => {
   const containerDetails = await listContainers();
   ctx.body = containerSchema.serialize(containerDetails);
-});
+};
 
-router.get('/:id', async (ctx, containerId) => {
+export const detail = async (ctx, containerId) => {
   const containerRef = await containerDetail(containerId);
   try {
     const container = await containerRef.inspect();
@@ -23,7 +15,4 @@ router.get('/:id', async (ctx, containerId) => {
     ctx.status = err.statusCode || 500;
     ctx.body = err;
   }
-});
-
-
-export default router;
+};

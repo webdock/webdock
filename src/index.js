@@ -7,6 +7,7 @@ import bodyParser from 'koa-bodyparser';
 import routes from './routes';
 import { authenticateRoute } from './routes/authenticate';
 import { SECRET_KEY } from './constants';
+import containerRoutes from './containers';
 import route from './utils/route';
 
 const app = new Koa();
@@ -15,6 +16,8 @@ app.use(cors({
   allowHeaders: ['Authorization', 'Content-Type'],
 }));
 app.use(bodyParser());
+
+containerRoutes(app);
 
 app.use(route('/api/authenticate').post(authenticateRoute));
 
