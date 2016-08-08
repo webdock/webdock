@@ -1,20 +1,12 @@
-import Router from 'koa-route-class';
-
 import docker from '../docker';
-import imageSchema from '../schemas/image';
+import imageSchema from './schema';
 
-
-const router = new Router({
-  prefix: 'images',
-});
-
-
-router.get('/', async ctx => {
+export const index = async ctx => {
   const dockerImages = await docker.listImages();
   ctx.body = imageSchema.serialize(dockerImages);
-});
+};
 
-router.get('/:id', async (ctx, imageId) => {
+export const detail = async (ctx, imageId) => {
   const imageRef = await docker.getImage(imageId);
 
   try {
@@ -25,7 +17,4 @@ router.get('/:id', async (ctx, imageId) => {
     ctx.status = err.statusCode;
     ctx.body = err;
   }
-});
-
-
-export default router;
+};

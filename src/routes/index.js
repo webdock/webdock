@@ -1,15 +1,10 @@
 import Router from 'koa-route-class';
 
-import imageRouter from './images';
-
-
 const router = new Router();
 
 const apiRouter = new Router({
   prefix: '/api',
 });
-
-apiRouter.use(imageRouter.routes());
 
 router.use(apiRouter.routes());
 

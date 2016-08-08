@@ -1,7 +1,6 @@
 import Schema from 'jsonapi-helper';
 
-import { formatImageId } from '../utils/images';
-
+import formatImageId from './utils';
 
 const imageSchema = new Schema({
   id: (obj) => formatImageId(obj.Id),

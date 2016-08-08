@@ -8,6 +8,7 @@ import routes from './routes';
 import { SECRET_KEY } from './constants';
 import userRoutes from './users';
 import containerRoutes from './containers';
+import imageRoutes from './images';
 
 const app = new Koa();
 
@@ -23,6 +24,7 @@ app.use(jwt({ secret: SECRET_KEY }).unless({
 
 userRoutes(app);
 containerRoutes(app);
+imageRoutes(app);
 app.use(routes);
 
 const server = http.createServer(app.callback());

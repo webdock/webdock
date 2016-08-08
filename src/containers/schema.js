@@ -1,8 +1,7 @@
 import Schema from 'jsonapi-helper';
 
-import imageSchema from '../schemas/image';
-import { formatImageId } from '../utils/images';
-
+import imageSchema from '../images/schema';
+import formatImageId from '../images/utils';
 
 const portsHelper = (obj) => {
   const ports = obj.NetworkSettings.Ports;
@@ -15,7 +14,6 @@ const portsHelper = (obj) => {
     destination: ports[sourcePort],
   }));
 };
-
 
 const containerSchema = new Schema({
   id: 'Id',
