@@ -4,8 +4,8 @@ import cors from 'kcors';
 import jwt from 'koa-jwt';
 import bodyParser from 'koa-bodyparser';
 
-import routes from './routes';
 import { SECRET_KEY } from './constants';
+import sharedRoutes from './shared';
 import userRoutes from './users';
 import containerRoutes from './containers';
 import imageRoutes from './images';
@@ -22,10 +22,10 @@ app.use(jwt({ secret: SECRET_KEY }).unless({
   path: '/api/authenticate',
 }));
 
+sharedRoutes(app);
 userRoutes(app);
 containerRoutes(app);
 imageRoutes(app);
-app.use(routes);
 
 const server = http.createServer(app.callback());
 server.listen(3000);

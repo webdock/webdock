@@ -24,8 +24,7 @@
     "koa": "^2.0.0",
     "koa-bodyparser": "3.2.0",
     "koa-jwt": "2.0.1",
-    "koa-path-match": "2.0.0",
-    "koa-route-class": "^0.3.0"
+    "koa-path-match": "2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
