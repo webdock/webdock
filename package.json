@@ -1,7 +1,7 @@
 {
-  "name": "webdock",
+  "name": "webdock-server",
   "version": "0.3.0",
-  "description": "",
+  "description": "Prototype of a web interface for docker.",
   "main": "src/index.js",
   "scripts": {
     "server": "babel-node -- .",
@@ -39,5 +39,13 @@
     "eslint-config-airbnb-base": "^2.0.0",
     "eslint-plugin-import": "^1.6.1",
     "nodemon": "^1.9.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdock/webdock-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webdock/webdock-server/issues"
+  },
+  "homepage": "https://github.com/webdock/webdock-server#readme"
 }
