@@ -40,12 +40,14 @@ export const index = async ctx => {
   ctx.body = userSchema.serialize(Object.keys(users).map(key => users[key]));
 };
 
-export const detail = async (ctx, userId) => {
-  try {
-    const user = users[userId];
-    ctx.body = userSchema.serialize(user);
-  } catch (err) {
-    ctx.status = err.statusCode;
-    ctx.body = err;
+export const detail = async ctx => {
+  const user = users[ctx.params.id];
+
+  if (!user) {
+    return error(ctx, 'User not found.', 404);
   }
+
+  ctx.body = userSchema.serialize(user);
+
+  return undefined;
 };
