@@ -11,7 +11,7 @@ import { SECRET_KEY } from './constants';
 const route = pathMatch();
 
 app.use(cors({
-  allowHeaders: 'Authorization',
+  allowHeaders: ['Authorization', 'Content-Type'],
 }));
 app.use(bodyParser());
 
