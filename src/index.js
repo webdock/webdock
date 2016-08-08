@@ -2,14 +2,12 @@ import http from 'http';
 import Koa from 'koa';
 import cors from 'kcors';
 import jwt from 'koa-jwt';
-import pathMatch from 'koa-path-match';
 import bodyParser from 'koa-bodyparser';
 
 import routes from './routes';
 import { authenticateRoute } from './routes/authenticate';
 import { SECRET_KEY } from './constants';
-
-const route = pathMatch();
+import route from './utils/route';
 
 const app = new Koa();
 
