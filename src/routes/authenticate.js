@@ -29,5 +29,5 @@ export const authenticateRoute = ctx => {
   const token = jwt.sign(user, SECRET_KEY, {
     expiresIn: 60 * 60 * 24 * 30, // 60s * 60m * 24h * 30d
   });
-  ctx.body = { token };
+  return ctx.body = { token };
 };
