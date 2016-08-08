@@ -30,3 +30,17 @@ export const start = async ctx => {
     ctx.body = err;
   }
 };
+
+export const stop = async ctx => {
+  const containerRef = await containerDetail(ctx.params.id);
+
+  try {
+    await containerRef.stop();
+
+    const container = await containerRef.inspect();
+    ctx.body = containerSchema.serialize(container);
+  } catch (err) {
+    ctx.status = err.statusCode || 500;
+    ctx.body = err;
+  }
+};
