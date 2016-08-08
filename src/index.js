@@ -17,6 +17,6 @@ app.use(bodyParser());
 
 app.use(route('/api/authenticate').post(authenticateRoute));
 
-app.use(jwt({ secret: SECRET_KEY }));
+app.use(jwt({ secret: SECRET_KEY }).unless({ method: 'OPTIONS' }));
 
 app.use(routes);
