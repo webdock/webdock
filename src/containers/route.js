@@ -6,8 +6,8 @@ export const index = async ctx => {
   ctx.body = containerSchema.serialize(containerDetails);
 };
 
-export const detail = async (ctx, containerId) => {
-  const containerRef = await containerDetail(containerId);
+export const detail = async ctx => {
+  const containerRef = await containerDetail(ctx.params.id);
   try {
     const container = await containerRef.inspect();
     ctx.body = containerSchema.serialize(container);

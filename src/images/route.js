@@ -6,8 +6,8 @@ export const index = async ctx => {
   ctx.body = imageSchema.serialize(dockerImages);
 };
 
-export const detail = async (ctx, imageId) => {
-  const imageRef = await docker.getImage(imageId);
+export const detail = async ctx => {
+  const imageRef = await docker.getImage(ctx.params.id);
 
   try {
     const dockerImage = await imageRef.inspect();
