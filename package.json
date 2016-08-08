@@ -19,6 +19,7 @@
     "dockerode": "^2.3.0",
     "dockerode-promise": "^0.1.0",
     "jsonapi-helper": "^0.3.0-dev.20160428",
+    "jsonwebtoken": "7.1.7",
     "kcors": "^2.1.0",
     "koa": "^2.0.0",
     "koa-bodyparser": "3.2.0",
