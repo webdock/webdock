@@ -17,6 +17,18 @@ export const detail = async ctx => {
   }
 };
 
+export const remove = async ctx => {
+  const containerRef = await containerDetail(ctx.params.id);
+
+  try {
+    const result = await containerRef.remove();
+    ctx.body = null;
+  } catch (err) {
+    ctx.status = err.statusCode || 500;
+    ctx.body = err;
+  }
+};
+
 export const start = async ctx => {
   const containerRef = await containerDetail(ctx.params.id);
 
