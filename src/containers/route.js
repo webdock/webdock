@@ -22,7 +22,7 @@ export const remove = async ctx => {
 
   try {
     const result = await containerRef.remove();
-    ctx.body = '';
+    ctx.body = null;
   } catch (err) {
     ctx.status = err.statusCode || 500;
     ctx.body = err;
